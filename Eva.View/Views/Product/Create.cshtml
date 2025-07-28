@@ -1,12 +1,13 @@
-﻿@model Categories;
+﻿@* @model Product
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create New Category</h1>
+<h1>Create</h1>
 
-<form asp-controller="Category" asp-action="Create" method="post">
-   
+
+<form asp-controller="Product" asp-action="Create" method="post">
+
     <div class="form-group mb-3">
         <label class="form-label" asp-for="CategoryName"></label>
         <input class="form-control" asp-for="CategoryName" />
@@ -24,4 +25,4 @@
 
 
 
-</form>
+</form> *@
