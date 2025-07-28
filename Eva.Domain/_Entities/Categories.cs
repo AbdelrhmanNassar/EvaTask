@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace Eva.Domain._Entities
 {
-    public class Categories
+    public class Categories : BaseEntity
     {
-        public int CategoryId { get; set; }
    //     [DataType("varchar(50)")]
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public int CategoryOrder { get; set; }
-        public bool IsDeleted { get; set; }
+
+        public ICollection<Product> Products = new HashSet<Product>();
 
     }
 }

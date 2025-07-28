@@ -5,7 +5,6 @@ using Eva.Domain.Repositories.Repo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Runtime.CompilerServices;
 
 namespace Eva.Domain
 {
@@ -14,9 +13,12 @@ namespace Eva.Domain
         //            Di Container 
         public static IServiceCollection AddDomainLayerDependencies(this IServiceCollection services , IConfiguration configuration )
         {
-            services.AddDbContext<CategoryDbContext>((options) =>
+            services.AddDbContext<ApplicationDbContext>((options) =>
             options.UseSqlServer(configuration.GetConnectionString("Eva")));
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
+         //   services.AddScoped<ICategoryRepository, CategoryRepository>();
+            //services.AddScoped<IGenericRepo<Categories>, CategoryRepository>();
+            //services.AddScoped<IGenericRepo<Product>, ProductRepository>();
+            services.AddScoped<IUnitOfWork, unitOfWork>();
 
             return services; 
 

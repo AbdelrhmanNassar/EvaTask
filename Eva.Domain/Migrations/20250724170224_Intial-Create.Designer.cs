@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Eva.Domain.Migrations
 {
-    [DbContext(typeof(CategoryDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250724170224_Intial-Create")]
     partial class IntialCreate
     {

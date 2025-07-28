@@ -1,12 +1,8 @@
-﻿using Eva.Services.CategoryServices;
+﻿using Eva.Services.CategoryServices.Services;
 using Eva.Services.CategoryServices.Services.Interfaces;
-using Microsoft.Extensions.Configuration;
+using Eva.Services.ProductServices;
+using Eva.Services.ProductServices.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Eva.Services
 {
@@ -17,6 +13,7 @@ namespace Eva.Services
         {
           
             services.AddScoped<ICategoryServices, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
 
             return services;
 

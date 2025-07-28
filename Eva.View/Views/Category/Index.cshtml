@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Categories>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Category Page";
 }
 <a asp-controller="Home" asp-action="Create" class="btn btn-primary">Create New Category</a>
 
@@ -26,13 +26,13 @@
                                 <td>@Html.DisplayFor(modelItem => item.CategoryOrder)</td>
                                 <td class="text-end">
                                     <div class="btn-group" role="group">
-                                        <a asp-action="Details" asp-route-id="@item.CategoryId" class="btn btn-sm btn-outline-primary">
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                        <a asp-action="Edit" asp-route-id="@item.CategoryId" class="btn btn-sm btn-outline-success">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-success">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a asp-action="Delete" asp-route-id="@item.CategoryId" class="btn btn-sm btn-outline-danger">
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </div>
@@ -48,5 +48,5 @@
 }
 else
 {
-    <div>No Employees To Display</div>
+    <div>No Categories To Display</div>
 }

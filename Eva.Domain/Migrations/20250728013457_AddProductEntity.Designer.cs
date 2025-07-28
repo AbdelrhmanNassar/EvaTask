@@ -4,6 +4,7 @@ using Eva.Domain.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eva.Domain.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class CategoryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250728013457_AddProductEntity")]
+    partial class AddProductEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +27,11 @@ namespace Eva.Domain.Migrations
 
             modelBuilder.Entity("Eva.Domain._Entities.Categories", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -48,7 +51,7 @@ namespace Eva.Domain.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
+                    b.HasKey("CategoryId");
 
                     b.ToTable("Category");
                 });
@@ -72,9 +75,6 @@ namespace Eva.Domain.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<double>("Price")
                         .HasColumnType("float")
                         .HasColumnName("BookPrice");
@@ -87,7 +87,7 @@ namespace Eva.Domain.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", t =>
+                    b.ToTable("Product", t =>
                         {
                             t.HasCheckConstraint("BookPriceConstrain", "[BookPrice]> 0.0 And  [BookPrice] <1000.0 ");
                         });
@@ -96,7 +96,7 @@ namespace Eva.Domain.Migrations
             modelBuilder.Entity("Eva.Domain._Entities.Product", b =>
                 {
                     b.HasOne("Eva.Domain._Entities.Categories", "Category")
-                        .WithMany("Products")
+                        .WithMany("Set<T>()")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -106,7 +106,7 @@ namespace Eva.Domain.Migrations
 
             modelBuilder.Entity("Eva.Domain._Entities.Categories", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Set<T>()");
                 });
 #pragma warning restore 612, 618
         }
